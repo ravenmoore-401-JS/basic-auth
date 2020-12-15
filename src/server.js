@@ -3,11 +3,13 @@
 // 3rd Party Resources
 const express = require('express');
 
+const authRoutes = require('./auth/authRoutes')
 // Prepare the express app
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(authRoutes);
 
 
 module.exports = {

@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Create a mongoose model
 const usersSchema = mongoose.Schema({
@@ -8,10 +9,18 @@ const usersSchema = mongoose.Schema({
   password: { type: String, required: true },
 });
 
-// TODO: make this a funciton that happens before save
-// req.body.password = await bcrypt.hash(req.body.password, 10);
+usersSchema.statics.authenticateBasic = async function (username, password) {
+  const user = await this.findOne({username});
+  const valid = await bcrypt.compare(password, user.password);
+  if(valid){return user;}
+  throw new Error('Invalid User');
+};
+usersSchema.pre('save', async function() {
+  if (this.isModified('password')){
+    this.password = await bcrypt.hash(this.password,10);
+  }
+});
 
-// TODO make a method for authenticating the hashed pass
 
 
 const Users = mongoose.model('users', usersSchema);
