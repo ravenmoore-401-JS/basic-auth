@@ -9,7 +9,7 @@
 - [ci/cd](https://github.com/ravenmoore-401-JS/basic-auth/actions) (GitHub Actions)
 - [back-end server url](https://rm-basic-auth.herokuapp.com/)
 
-- [submit PR](https://github.com/ravenmoore-401-JS/basic-auth/pull/)
+- [submit PR](https://github.com/ravenmoore-401-JS/basic-auth/pull/1)
 
 ### Setup
 
